@@ -1,0 +1,29 @@
+eock
+auth
+name "vpn.wallcity.org"
+dump
+# CCP seems to confuse Android clients, better turn it off
+noccp
+novj
+novjccomp
+nopcomp
+noaccomp
+ms-dns <%= @primary_dns %>
+ms-dns <%= @second_dns %>
+require-mschap
+require-mschap-v2
+asyncmap 0
+crtscts
+hide-password
+modem
+debug
+name l2tpd
+lcp-echo-interval 120 
+lcp-echo-failure 10
+idle 1800
+connect-delay 5000
+ipcp-accept-local
+ipcp-accept-remote
+proxyarp
+mtu 1400
+mru 1400

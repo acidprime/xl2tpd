@@ -1,0 +1,32 @@
+[global]
+port = 1701
+ipsec saref = yes
+listen-addr = <%= @wan_ip %>
+;
+; requires openswan-2.5.18 or higher - Also does not yet work in combination
+; with kernel mode l2tp as present in linux 2.6.23+
+; ipsec saref = yes
+; Use refinfo of 22 if using an SAref kernel patch based on openswan 2.6.35 or
+;  when using any of the SAref kernel patches for kernels up to 2.6.35.
+; ipsec refinfo = 30
+;
+; works around bug: http://bugs.centos.org/view.php?id=5832
+force userspace = yes
+
+[lns default]
+exclusive = yes
+ip range = <%= @ip_range_start %>-<%= @ip_range_end %>
+local ip = <%= @ppp_device_ip %>
+;hidden bit = no
+length bit = yes
+name = wallcity.org
+require authentication = yes
+refuse pap = yes
+unix authentication = no
+ppp debug = yes
+refuse pap = yes
+; leave chap unspecified for maximum compatibility with windows, iOS, etc
+; require chap = yes
+ppp debug = yes
+pppoptfile = /etc/ppp/options.xl2tpd
+length bit = yes
